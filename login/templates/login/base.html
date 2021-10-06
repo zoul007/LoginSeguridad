@@ -1,0 +1,97 @@
+<html lang="es">
+<STYLE>
+  A {
+    text-decoration: none;
+  }
+</STYLE>
+
+<head>
+  <title> Coaching League of Legend</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  {% load static %}
+  {% block js %}
+  {% endblock %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'login/css/style.css' %}">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="{% static 'login/js/scripts.js' %}"></script>
+
+
+  {% load pwa%}
+
+  {% progressive_web_app_meta %}
+
+
+</head>
+
+<body>
+  <header class="header">
+    <img id="logo" src="{% static 'login/images/logo_coaching.png'%}" alt="logo">
+    <div class="contenedor completo">
+      
+      <nav class="navegacion">
+        <ul>
+
+
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'home' %}"> Inicio </a></li>
+          <li>
+              <a href="#">@-{{user.username}}</a>
+          </li>
+
+          <li>
+              <a href="{% url 'logout' %}">Cerrar Sesión</a>
+          </li>
+
+          {% else %}
+          <li>
+              <a href="{% url 'login' %}">Iniciar Sesión</a>
+          </li>
+
+          <li>
+              <!--a href="{ url 'registro' %}">Regístrate</a-->
+          </li>
+          {% endif %}
+
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+  <div class="contenido_block">
+    {% block contenido %}
+
+    {% endblock %}
+
+  </div>
+
+</body>
+
+<footer class="footer">
+  <div class="contenedor">
+    <p>Sitio diseñada por @Gerardo_Ahumada @Felipe_Herrera</p>
+  </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.js"></script>
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+{% block api %}
+
+{% endblock %}
+
+
+
+
+
+</html>
